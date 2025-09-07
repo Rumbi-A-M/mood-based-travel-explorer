@@ -1,17 +1,27 @@
-import { Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/home";
-import Login from "./pages/login";
-import Signup from "./pages/signup";
+import React, { useState } from "react";
 
-import './App.css'
+export default function LoginForm() {
+  let [username, setUsername] = useState("");
+  let [password, setPassword] = useState("");
 
-function App() {
+  function handleSubmit(event) {
+    event.preventDefault();
+    alert(`Loging in with ${username} and ${password}`);
+  }
+
+  function updateUsername(event) {
+    setUsername(event.target.value);
+  }
+
+  function updatePassword(event) {
+    setPassword(event.target.value);
+  }
+
   return (
-    <div>
-      <h1>Hello World 🌍</h1>
-      <p>This is the Mood-Based Travel Explorer</p>
-    </div>
-  )
+    <form onSubmit={handleSubmit}>
+      <input type="text" placeholder="Username" onChange={updateUsername} />
+      <input type="password" placeholder="Password" onChange={updatePassword} />
+      <input type="submit" value="Login" />
+    </form>
+  );
 }
-
-export default App;
